@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
+
+    <TextView
+        android:id="@+id/team1Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textColor="#000"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/score"
+        tools:text="Team 1" />
+
+    <TextView
+        android:id="@+id/score"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="8dp"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="0:0"/>
+
+    <TextView
+        android:id="@+id/team2Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Team 2"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:padding="8dp"
+        app:layout_constraintLeft_toRightOf="@id/score"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <TextView
+        android:id="@+id/matchStatus"
+        app:layout_constraintTop_toBottomOf="@id/score"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Live"
+        />
+    <TextView
+        android:id="@+id/matchTourneyName"
+        app:layout_constraintTop_toBottomOf="@id/matchStatus"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="The International 9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

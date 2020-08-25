@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    android:id="@+id/bottomNav"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_tourneyInfo"
+        android:icon="@drawable/tourney_info"
+        android:title="@string/title_tourneyInfo" />
+
+    <item
+        android:id="@+id/navigation_tourneyStandings"
+        android:icon="@drawable/tournament_standings"
+        android:title="@string/title_standings" />
+
+    <item
+        android:id="@+id/navigation_matches"
+        android:icon="@drawable/vs_icon_navbar"
+        android:title="@string/title_matches" />
+
+    <item
+        android:id="@+id/navigation_teams"
+        android:icon="@drawable/jersey_icon_navbar"
+        android:title="@string/title_teams" />
+
+</menu>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout01"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/trophyIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:padding="16dp"
+        android:src="@drawable/trophy_icon" />
+
+    <TextView
+        android:id="@+id/tourneyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/trophyIcon"
+        android:gravity="right"
+        android:padding="8dp"
+        android:textColor="#000"
+        android:textSize="20sp"
+        tools:text="Tournament Name" />
+    <TextView
+        android:id="@+id/tourneyStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Ongoing"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:layout_below="@id/tourneyName"
+        android:layout_centerHorizontal="true"
+        />
+</RelativeLayout>

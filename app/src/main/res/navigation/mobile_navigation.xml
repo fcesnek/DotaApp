@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_tourneyInfo">
+
+    <fragment
+        android:id="@+id/navigation_tourneyInfo"
+        android:name="com.ferit.filipcesnek.dotaapp.tournamentInfo.info.TourneyInfoFragment"
+        android:label="@string/title_tourneyInfo"
+        tools:layout="@layout/fragment_tourney_info" />
+
+    <fragment
+        android:id="@+id/navigation_matches"
+        android:name="com.ferit.filipcesnek.dotaapp.tournamentInfo.matches.TourneyMatchesFragment"
+        android:label="@string/title_matches"
+        tools:layout="@layout/fragment_tourney_matches" />
+
+    <fragment
+        android:id="@+id/navigation_tourneyStandings"
+        android:name="com.ferit.filipcesnek.dotaapp.tournamentInfo.standings.TourneyStandingsFragment"
+        android:label="@string/title_standings"
+        tools:layout="@layout/fragment_tourney_standings" />
+
+    <fragment
+        android:id="@+id/navigation_teams"
+        android:name="com.ferit.filipcesnek.dotaapp.tournamentInfo.teams.TourneyTeamsFragment"
+        android:label="@string/title_teams"
+        tools:layout="@layout/fragment_tourney_teams" />
+</navigation>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "126768695819",
+    "firebase_url": "https://dota-app-286601.firebaseio.com",
+    "project_id": "dota-app-286601",
+    "storage_bucket": "dota-app-286601.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126768695819:android:c3dbf89016043a3b79d50e",
+        "android_client_info": {
+          "package_name": "com.ferit.filipcesnek.dotaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126768695819-mc5q1odn6mq79ha921550q6q9fhmai1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUsB4s6QDbpVraszayMBVi1rdKzXKu4OM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126768695819-mc5q1odn6mq79ha921550q6q9fhmai1q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

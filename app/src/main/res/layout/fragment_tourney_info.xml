@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".tournamentInfo.info.TourneyInfoFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/tourneyInfoProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="visible" />
+        <RelativeLayout
+            android:id="@+id/tourneyInfoMainContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/text_tourneyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                tools:text="Tournament Name"
+                android:layout_marginBottom="10dp"/>
+            <View
+                android:layout_below="@id/text_tourneyName"
+                android:id="@+id/separator_name_bio"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginBottom="15dp"/>
+            <TextView
+                android:layout_below="@+id/separator_name_bio"
+                android:id="@+id/text_tourneyBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                tools:text="blablablasladasdkjhq    wiud ashduwqdjhasd ashd asjd" />
+            <View
+                android:layout_below="@id/text_tourneyBio"
+                android:id="@+id/separator_bio_table"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginBottom="15dp"/>
+            <TableLayout
+                android:layout_margin="15dp"
+                android:id="@+id/tourneyTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:layout_below="@id/separator_bio_table"
+                android:stretchColumns="1"
+                android:padding="25dp"
+                >
+                <TableRow
+                    android:id="@+id/rowPrizePool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="@dimen/tableFontSize"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/label_prizePool"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="@string/prize_pool_label" />
+
+                    <TextView
+                        android:textSize="@dimen/tableFontSize"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/value_prizePool"
+                        android:layout_gravity="right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="1px"
+                    android:background="#BDBDBD">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:layout_span="2"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/rowOrganizer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_gravity="left"
+                        android:textSize="@dimen/tableFontSize"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/label_organizer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/organizer_label" />
+
+                    <TextView
+                        android:layout_gravity="right"
+                        android:textSize="@dimen/tableFontSize"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/value_organizer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="1px"
+                    android:background="#BDBDBD">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:layout_span="2"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/rowLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_gravity="left"
+                        android:textSize="@dimen/tableFontSize"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/label_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/location_label" />
+
+                    <TextView
+                        android:layout_gravity="right"
+                        android:textSize="@dimen/tableFontSize"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/value_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="1px"
+                    android:background="#BDBDBD">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:layout_span="2"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/rowNumOfTeams"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_gravity="left"
+                        android:textSize="@dimen/tableFontSize"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/label_numOfTeams"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/number_of_teams_label" />
+
+                    <TextView
+                        android:layout_gravity="right"
+                        android:textSize="@dimen/tableFontSize"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/value_numOfTeams"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_below="@+id/tourneyTable"
+                android:id="@+id/label_venueLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/venue_location_title"
+                android:textSize="30sp"
+                tools:text="Venue Location" />
+            <RelativeLayout
+                android:paddingBottom="20dp"
+                android:layout_below="@+id/label_venueLocation"
+                android:id="@+id/map_layout"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                >
+
+                <fragment
+                    android:id="@+id/map"
+                    class="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/transparent_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="#00000000" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>
