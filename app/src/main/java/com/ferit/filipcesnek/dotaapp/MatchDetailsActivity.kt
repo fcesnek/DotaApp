@@ -1,14 +1,20 @@
 package com.ferit.filipcesnek.dotaapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import com.ferit.filipcesnek.dotaapp.DotaApi.Networking
 import com.ferit.filipcesnek.dotaapp.tournamentInfo.TournamentData
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_match_details.*
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.tournament_team_row.view.*
 import org.w3c.dom.Text
 import retrofit2.Call
@@ -18,11 +24,28 @@ import java.lang.Exception
 
 class MatchDetailsActivity : AppCompatActivity(), Callback<MatchDetails> {
     lateinit var matchId: String
-
+    var mFirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_details)
         this.matchId = intent.getStringExtra("matchId")
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar?.setCustomView(R.layout.custom_toolbar)
+        toolbar_login.setOnClickListener { v ->
+            val intent = Intent(v?.context, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        toolbar_register.setOnClickListener { v ->
+            val intent = Intent(v?.context, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+
+        toolbar_logout.setOnClickListener { v ->
+            mFirebaseAuth.signOut()
+            val currentUser = mFirebaseAuth.currentUser
+            updateUI(currentUser)
+        }
         findMatchInfo()
     }
     private fun findMatchInfo() {
@@ -32,10 +55,24 @@ class MatchDetailsActivity : AppCompatActivity(), Callback<MatchDetails> {
             e.printStackTrace()
         }
     }
+
+    fun updateUI(currentUser: FirebaseUser?) {
+        if(currentUser != null) {
+            toolbar_register.visibility = View.GONE
+            toolbar_login.visibility = View.GONE
+            toolbar_logout.visibility = View.VISIBLE
+        } else {
+            toolbar_register.visibility = View.VISIBLE
+            toolbar_login.visibility = View.VISIBLE
+            toolbar_logout.visibility = View.GONE
+        }
+    }
+
     private fun setUpUi(response: MatchDetails) {
         val team1Logo: ImageView = findViewById(R.id.team1Logo)
         val team2Logo: ImageView = findViewById(R.id.team2Logo)
 
+        toolbar_title.text = "Match Details - ${response.matchId}"
         val team1 = response.radiantTeam
         val team2 = response.direTeam
         Picasso.get()

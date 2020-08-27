@@ -17,12 +17,17 @@ import com.ferit.filipcesnek.dotaapp.R
 import com.ferit.filipcesnek.dotaapp.TournamentInfoViewModel
 import com.ferit.filipcesnek.dotaapp.tournamentInfo.MatchFromApi
 import com.ferit.filipcesnek.dotaapp.tournaments.TournamentsAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_tournament_list.*
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.fragment_tourney_matches.*
 
 class TourneyMatchesFragment : Fragment() {
     private val viewModel by activityViewModels<TournamentInfoViewModel>()
     private var matches: List<MatchFromApi> = listOf()
+    var mFirebaseAuth = FirebaseAuth.getInstance()
+    var currentUser: FirebaseUser? = mFirebaseAuth.currentUser
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,14 +35,14 @@ class TourneyMatchesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_tourney_matches, container, false)
-        observeSomeChangingVar()
+        observeTournamentData()
         return root
     }
 
-    private fun observeSomeChangingVar() {
-        viewModel.someChangingVar.observe(viewLifecycleOwner, Observer { newValue->
+    private fun observeTournamentData() {
+        viewModel.mutableTournamentData.observe(viewLifecycleOwner, Observer { newValue->
             this.matches = newValue.matches
-            recyclerViewTournamentMatches.adapter = TourneyMatchesAdapter()
+            recyclerViewTournamentMatches.adapter = TourneyMatchesAdapter(currentUser)
             recyclerViewTournamentMatches.layoutManager = LinearLayoutManager(
                 activity,
                 RecyclerView.VERTICAL,

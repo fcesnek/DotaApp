@@ -11,11 +11,21 @@ import com.ferit.filipcesnek.dotaapp.MatchDetailsActivity
 import com.ferit.filipcesnek.dotaapp.R
 import com.ferit.filipcesnek.dotaapp.TournamentInfoActivity
 import com.ferit.filipcesnek.dotaapp.tournamentInfo.MatchFromApi
+import com.ferit.filipcesnek.dotaapp.tournaments.FirebaseTournament
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.tournament_match_row.view.*
+import kotlinx.android.synthetic.main.tournament_row.view.*
 import java.util.concurrent.TimeUnit
 
-class TourneyMatchesAdapter: RecyclerView.Adapter<TourneyMatchesAdapter.TourneyMatchesViewHolder>() {
+class TourneyMatchesAdapter(val currentUser: FirebaseUser?): RecyclerView.Adapter<TourneyMatchesAdapter.TourneyMatchesViewHolder>() {
     inner class TourneyMatchesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var database = FirebaseDatabase.getInstance()
+        var firebaseMatchesRef = database.getReference("matches/${currentUser?.uid}")
+        var dataSnapshot: Iterable<DataSnapshot> = mutableListOf()
+
         init {
             itemView.setOnClickListener{
                 val position: Int = adapterPosition
@@ -47,6 +57,12 @@ class TourneyMatchesAdapter: RecyclerView.Adapter<TourneyMatchesAdapter.TourneyM
             else
             {
                 itemView.setBackgroundColor(Color.parseColor("#e0f7fa"));
+            }
+
+            itemView.add_match_btn.setOnClickListener {
+                val item = FirebaseMatch(result, currentUser?.uid)
+                val newRef: DatabaseReference = firebaseMatchesRef.push()
+                newRef.setValue(item)
             }
 
         }

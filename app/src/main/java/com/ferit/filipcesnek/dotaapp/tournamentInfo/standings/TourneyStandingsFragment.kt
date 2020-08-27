@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ferit.filipcesnek.dotaapp.R
 import com.ferit.filipcesnek.dotaapp.TournamentInfoViewModel
 import com.ferit.filipcesnek.dotaapp.tournamentInfo.TourneyInfo
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.fragment_tourney_standings.*
 
 class TourneyStandingsFragment : Fragment() {
@@ -25,11 +26,11 @@ class TourneyStandingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_tourney_standings, container, false)
-        observeSomeChangingVar()
+        observeTournamentData()
         return root
     }
-    private fun observeSomeChangingVar() {
-        viewModel.someChangingVar.observe(viewLifecycleOwner, Observer { newValue->
+    private fun observeTournamentData() {
+        viewModel.mutableTournamentData.observe(viewLifecycleOwner, Observer { newValue->
             this.tournamentInfo = newValue.tourneyInfo
             recyclerViewTournamentStandings.adapter = TourneyStandingsAdapter()
             recyclerViewTournamentStandings.layoutManager = LinearLayoutManager(

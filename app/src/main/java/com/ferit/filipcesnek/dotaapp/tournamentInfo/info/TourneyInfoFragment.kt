@@ -23,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_tournament_info.*
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import org.jetbrains.anko.doAsync
 import java.util.*
 
@@ -46,7 +47,6 @@ class TourneyInfoFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_tourney_info, container, false)
-
         this.tourneyInfoProgressBar = root.findViewById(R.id.tourneyInfoProgressBar)
         this.tourneyName = root.findViewById(R.id.text_tourneyName)
         this.tourneyBio = root.findViewById(R.id.text_tourneyBio)
@@ -59,7 +59,7 @@ class TourneyInfoFragment : Fragment(), OnMapReadyCallback {
         val transparentImageView: ImageView = root.findViewById(R.id.transparent_image)
 
         tourneyInfoMainContent.visibility = View.GONE
-        observeSomeChangingVar()
+        observeTournamentData()
 
 
         transparentImageView.setOnTouchListener(OnTouchListener { v, event ->
@@ -107,8 +107,8 @@ class TourneyInfoFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    fun observeSomeChangingVar() {
-        viewModel.someChangingVar.observe(viewLifecycleOwner, Observer { newValue ->
+    fun observeTournamentData() {
+        viewModel.mutableTournamentData.observe(viewLifecycleOwner, Observer { newValue ->
             val mapFragment =
                 childFragmentManager.fragments[0] as SupportMapFragment?
             mapFragment!!.getMapAsync(this)

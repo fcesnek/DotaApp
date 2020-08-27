@@ -1,7 +1,7 @@
 package com.ferit.filipcesnek.dotaapp.tournaments
 
-data class Tournament (
-    val name: String,
-    val link: String,
-    val status: String
+class Tournament (
+    var name: String = "",
+    var link: String = "",
+    var status: String = ""
 )
