@@ -6,21 +6,45 @@
 
     <Button
         android:id="@+id/tournamentListButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="171dp"
+        android:layout_margin="70dp"
+        android:layout_width="200sp"
+        android:layout_height="100sp"
         android:text="@string/list_tournaments"
-        app:layout_constraintEnd_toEndOf="@+id/matchesListButton"
-        app:layout_constraintStart_toStartOf="@+id/matchesListButton"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/matchesListButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginBottom="279dp"
+        android:layout_margin="20dp"
+        android:layout_width="200sp"
+        android:layout_height="100sp"
+        android:textSize="20dp"
         android:text="@string/list_matches"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tournamentListButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    
+    <Button
+        android:id="@+id/savedMatchesButton"
+        android:layout_margin="60dp"
+        android:layout_width="200sp"
+        android:layout_height="100sp"
+        android:textSize="20dp"
+        android:text="@string/saved_matches"
+        app:layout_constraintTop_toBottomOf="@+id/matchesListButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/savedTourneysButton"
+        android:layout_margin="20dp"
+        android:layout_width="200sp"
+        android:layout_height="100sp"
+        android:textSize="20dp"
+        android:text="@string/saved_tournaments"
+        app:layout_constraintTop_toBottomOf="@+id/savedMatchesButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

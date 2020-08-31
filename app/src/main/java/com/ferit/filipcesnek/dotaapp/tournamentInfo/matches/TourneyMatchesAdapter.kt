@@ -2,22 +2,18 @@ package com.ferit.filipcesnek.dotaapp.tournamentInfo.matches
 
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.ferit.filipcesnek.dotaapp.MatchDetailsActivity
 import com.ferit.filipcesnek.dotaapp.R
-import com.ferit.filipcesnek.dotaapp.TournamentInfoActivity
+import com.ferit.filipcesnek.dotaapp.tournamentInfo.FirebaseMatch
 import com.ferit.filipcesnek.dotaapp.tournamentInfo.MatchFromApi
-import com.ferit.filipcesnek.dotaapp.tournaments.FirebaseTournament
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.tournament_match_row.view.*
-import kotlinx.android.synthetic.main.tournament_row.view.*
 import java.util.concurrent.TimeUnit
 
 class TourneyMatchesAdapter(val currentUser: FirebaseUser?): RecyclerView.Adapter<TourneyMatchesAdapter.TourneyMatchesViewHolder>() {
@@ -60,11 +56,37 @@ class TourneyMatchesAdapter(val currentUser: FirebaseUser?): RecyclerView.Adapte
             }
 
             itemView.add_match_btn.setOnClickListener {
-                val item = FirebaseMatch(result, currentUser?.uid)
+                val item = FirebaseMatch(result)
                 val newRef: DatabaseReference = firebaseMatchesRef.push()
                 newRef.setValue(item)
             }
 
+            itemView.remove_match_btn.setOnClickListener {
+                val refkey = this.dataSnapshot.find {
+                        el ->
+                    result.matchId == el.getValue(FirebaseMatch::class.java)?.match!!.matchId
+                }
+                firebaseMatchesRef.child(refkey?.key.toString()).removeValue()
+                itemView.add_match_btn.visibility = View.VISIBLE
+                itemView.remove_match_btn.visibility = View.GONE
+            }
+            val ref = this
+            firebaseMatchesRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    ref.dataSnapshot = snapshot.children
+                    for (postSnapshot in snapshot.children) {
+                        val match = postSnapshot.getValue(FirebaseMatch::class.java)
+                        if (result.matchId == match?.match!!.matchId) {
+                            itemView.add_match_btn.visibility = View.GONE
+                            itemView.remove_match_btn.visibility = View.VISIBLE
+                        }
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.d("error", databaseError.message)
+                }
+            })
         }
     }
     val matches: MutableList<MatchFromApi> = mutableListOf()

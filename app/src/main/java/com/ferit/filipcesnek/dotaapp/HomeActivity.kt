@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class HomeActivity : AppCompatActivity() {
@@ -17,6 +18,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.custom_toolbar)
+        var currentUser = mFirebaseAuth.currentUser
+
         toolbar_title.text = "Home"
         toolbar_login.setOnClickListener { v ->
             val intent = Intent(v?.context, LoginActivity::class.java)
@@ -30,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
 
         toolbar_logout.setOnClickListener { v ->
             mFirebaseAuth.signOut()
-            val currentUser = mFirebaseAuth.currentUser
+            currentUser = mFirebaseAuth.currentUser
             updateUI(currentUser)
         }
 
@@ -45,11 +48,20 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(v?.context, MatchesListActivity::class.java)
             startActivity(intent)
         }
+
+        savedTourneysButton.setOnClickListener { v ->
+            val intent = Intent(v?.context, SavedTournamentsActivity::class.java)
+            startActivity(intent)
+        }
+
+        savedMatchesButton.setOnClickListener { v ->
+            val intent = Intent(v?.context, SavedMatchesActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = mFirebaseAuth.currentUser
         updateUI(currentUser)
     }
@@ -59,10 +71,14 @@ class HomeActivity : AppCompatActivity() {
             toolbar_register.visibility = View.GONE
             toolbar_login.visibility = View.GONE
             toolbar_logout.visibility = View.VISIBLE
+            savedTourneysButton.visibility = View.VISIBLE
+            savedMatchesButton.visibility = View.VISIBLE
         } else {
             toolbar_register.visibility = View.VISIBLE
             toolbar_login.visibility = View.VISIBLE
             toolbar_logout.visibility = View.GONE
+            savedTourneysButton.visibility = View.GONE
+            savedMatchesButton.visibility = View.GONE
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.ferit.filipcesnek.dotaapp.tournamentInfo.info
 
+import android.annotation.SuppressLint
 import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
@@ -41,6 +42,7 @@ class TourneyInfoFragment : Fragment(), OnMapReadyCallback {
     lateinit var tourneyInfoProgressBar: ProgressBar
     lateinit var mainScrollView: NestedScrollView
     lateinit var tourneyInfoMainContent: RelativeLayout
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,18 +63,15 @@ class TourneyInfoFragment : Fragment(), OnMapReadyCallback {
         tourneyInfoMainContent.visibility = View.GONE
         observeTournamentData()
 
-
         transparentImageView.setOnTouchListener(OnTouchListener { v, event ->
             val action = event.action
             when (action) {
                 MotionEvent.ACTION_DOWN -> {
-                    // Disallow ScrollView to intercept touch events.
                     mainScrollView.requestDisallowInterceptTouchEvent(true)
                     // Disable touch on transparent view
                     false
                 }
                 MotionEvent.ACTION_UP -> {
-                    // Allow ScrollView to intercept touch events.
                     mainScrollView.requestDisallowInterceptTouchEvent(false)
                     true
                 }
@@ -95,12 +94,11 @@ class TourneyInfoFragment : Fragment(), OnMapReadyCallback {
                 this.tournamentInfo.tourneyInfo.location,
                 1
             )
-            Log.d("address", addresses.toString())
             if(addresses.size > 0) {
                 val address = addresses[0]
                 val location = LatLng(address.latitude, address.longitude)
                 map.addMarker(MarkerOptions().position(location).title("Marker"))
-                map.moveCamera(CameraUpdateFactory.newLatLng(location))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 5f))
             }
         } catch (e: Exception) {
             e.printStackTrace()
