@@ -8,12 +8,12 @@
         <RelativeLayout
             android:id="@+id/toolbarRelativeLayout"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="10dp">
+            android:layout_height="fill_parent">
 
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -25,6 +25,7 @@
             <Button
                 android:id="@+id/toolbar_login"
                 android:layout_toLeftOf="@id/toolbar_register"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_button"/>
@@ -33,12 +34,14 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/action_register"/>
+            android:text="@string/action_register"
+                android:layout_centerVertical="true"/>
             <Button
                 android:id="@+id/toolbar_logout"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/action_logout"/>
+                android:text="@string/action_logout"
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
 </androidx.appcompat.widget.Toolbar>

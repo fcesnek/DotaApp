@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DotaApp</string>
+    <string name="app_name">Dota Tracker</string>
     <string name="networkError">Sorry, network problems encountered</string>
     <string name="list_tournaments">LIST TOURNAMENTS</string>
     <string name="list_matches">LIST UPCOMING MATCHES</string>

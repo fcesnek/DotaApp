@@ -25,12 +25,16 @@ import java.lang.Exception
 class MatchDetailsActivity : AppCompatActivity(), Callback<MatchDetails> {
     lateinit var matchId: String
     var mFirebaseAuth = FirebaseAuth.getInstance()
+    var currentUser = mFirebaseAuth.currentUser
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_details)
         this.matchId = intent.getStringExtra("matchId")
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.custom_toolbar)
+
+        updateUI(this.currentUser)
         toolbar_login.setOnClickListener { v ->
             val intent = Intent(v?.context, LoginActivity::class.java)
             startActivity(intent)
@@ -43,8 +47,8 @@ class MatchDetailsActivity : AppCompatActivity(), Callback<MatchDetails> {
 
         toolbar_logout.setOnClickListener { v ->
             mFirebaseAuth.signOut()
-            val currentUser = mFirebaseAuth.currentUser
-            updateUI(currentUser)
+            this.currentUser = mFirebaseAuth.currentUser
+            updateUI(currentUser = this.currentUser)
         }
         findMatchInfo()
     }

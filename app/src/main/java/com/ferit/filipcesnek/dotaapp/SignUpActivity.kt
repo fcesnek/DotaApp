@@ -4,21 +4,30 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class SignUpActivity : AppCompatActivity() {
     val mFirebaseAuth = FirebaseAuth.getInstance()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar?.setCustomView(R.layout.custom_toolbar)
         toolbar_title.text = "Sign Up"
         register_btn.setOnClickListener {
             signUpUser()
         }
+        toolbar_login.setOnClickListener { v ->
+            val intent = Intent(v?.context, LoginActivity::class.java)
+            startActivity(intent)
+        }
+        toolbar_logout.visibility = View.GONE
     }
 
     private fun signUpUser() {

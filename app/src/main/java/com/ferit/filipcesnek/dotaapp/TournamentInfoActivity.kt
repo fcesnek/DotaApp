@@ -58,7 +58,7 @@ class TournamentInfoActivity : AppCompatActivity(), Callback<TournamentData> {
 
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.custom_toolbar)
-        toolbar_title.text = "Tournament Information"
+        toolbar_title.text = "Tournament Info"
         toolbar_login.setOnClickListener { v ->
             val intent = Intent(v?.context, LoginActivity::class.java)
             startActivity(intent)
